@@ -1,0 +1,18 @@
+@font-face {
+	font-family: 'Dinar';
+	src: url('../fonts/Dinar.ttf');
+}
+
+@font-face {
+	font-family: 'Entezar';
+	src: url('../fonts/Entezar.ttf');
+}
+
+@font-face {
+	font-family: 'Yekan';
+	src: url('../fonts/Yekan.woff');
+}
+
+.yekan {font-family: 'Yekan'}
+.dinar {font-family: 'Dinar'}
+.entezar {font-family: 'Entezar'}
