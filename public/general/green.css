@@ -17,6 +17,12 @@ body {
 	padding: 8% 0 0;
 	margin: auto;
 }
+
+.login-page .alert-danger li {
+	color: #EF3B3A;
+	text-align: right;
+}
+
 .form {
 	position: relative;
 	z-index: 1;
@@ -101,7 +107,4 @@ body {
 .container .info span a {
 	color: #000000;
 	text-decoration: none;
-}
-.container .info span .fa {
-	color: #EF3B3A;
 }

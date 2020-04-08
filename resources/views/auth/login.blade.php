@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa">
     <head>
         <meta charset="utf-8">
         <title> ورود به حساب کاربری </title>
@@ -10,7 +10,9 @@
         <div class="login-page">
             <div class="form">
                 <h3> سامانه ارزیابی شعب بنیاد شهید استان کرمانشاه </h3>
-                <form class="login-form">
+                @include('includes.errors')
+                <form class="login-form" method="post" action="{{route('login')}}">
+                    @csrf
                     <input type="text" name="name" placeholder="نام کاربری"/>
                     <input type="password" name="password" placeholder="رمزعبور"/>
                     <button>ورود به حساب کاربری</button>
