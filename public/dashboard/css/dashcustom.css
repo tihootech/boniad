@@ -1,0 +1,168 @@
+/*******************************/
+/* Fonts */
+/*******************************/
+
+@font-face {
+	src: url(../fonts/Yekan.woff);
+	font-family: 'Yekan';
+}
+
+@font-face {
+	src: url(../fonts/Dinar.ttf);
+	font-family: 'Dinar';
+}
+
+@font-face {
+	src: url(../fonts/Calibri.ttf);
+	font-family: 'Calibri';
+}
+
+.yekan {
+	font-family: 'Yekan' !important;
+}
+
+.dinar {
+	font-family: 'Dinar' !important;
+}
+
+.calibri {
+	font-family: 'Calibri' !important;
+}
+
+/*******************************/
+/* Main */
+/*******************************/
+
+body {
+	font-family: 'Yekan', 'Dinar', 'Calibri';
+	direction: rtl;
+	text-align: right;
+}
+
+pre, code {
+	direction: ltr;
+	text-align: left;
+	border : 1px solid #9C27B0;
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 20px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Dinar', 'Calibri';
+}
+
+.popover, ::placeholder {
+	font-family: 'Yekan', 'Dinar', 'Calibri';
+}
+
+.hidden {
+	display: none;
+}
+
+.material-icons {
+	display: inline-block;
+}
+
+.fa-2x-important {
+	font-size: 2em !important;
+}
+
+/*******************************/
+/* Custom */
+/*******************************/
+
+.searchbox-width {
+	min-width: 150px;
+}
+
+.badge-lg {
+	font-size: 85%;
+	padding: 8px 15px;
+}
+
+.text-underlined {
+	text-decoration: underline;
+}
+
+.messanger .messages {
+	max-height: 55vh;
+}
+.messanger .messages .message {
+	cursor: pointer;
+}
+.messanger .messages .message i {
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 3px;
+
+}
+.one-half {
+	font-size: 1.5em;
+}
+/*******************************/
+/* Realy Custom */
+/*******************************/
+
+.text-editor {
+	direction: ltr;
+	font-family: 'Calibri', 'Yekan';
+}
+
+.messages::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.messages::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #f1f1f1;
+}
+.messages::-webkit-scrollbar-thumb {
+  background-color: #E91E63;
+  border-radius: 10px;
+}
+
+.table-responsive th:not(:first-child) {
+	min-width: 100px;
+}
+
+/*******************************/
+/* RTL */
+/*******************************/
+.custom-control-label::before, .custom-control-label::after {
+	left: unset;
+}
+
+.custom-control-label > span {
+	padding-right: 25px;
+}
+
+.page-item:first-child .page-link {
+	border-radius: 0;
+	border-top-right-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+	border-radius: 0;
+	border-top-left-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
+}
+
+.nice-select {
+	padding-right: 18px;
+	padding-left: 30px;
+	text-align: right !important;
+}
+.nice-select:after {
+	left: 12px;
+	right: unset;
+}
+.nice-select .option {
+	padding-right: 18px;
+	padding-left: 29px;
+}
+
+.quizzes-to-join .tile {
+	min-height: 225px;
+}
