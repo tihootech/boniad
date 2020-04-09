@@ -3,83 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Indicator;
+use App\Category;
 use Illuminate\Http\Request;
 
 class IndicatorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $indicators = Indicator::latest()->paginate(25);
+        return view('app.indicator.index', compact('indicators'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $indicator = new Indicator;
+        $categories = Category::all();
+        return view('app.indicator.form', compact('indicator','categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = self::validation();
+        Indicator::create($data);
+        return redirect()->route('indicator.index')->withMessage(__('SUCCESS'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Indicator  $indicator
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Indicator $indicator)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Indicator  $indicator
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Indicator $indicator)
     {
-        //
+        $categories = Category::all();
+        return view('app.indicator.form', compact('indicator','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Indicator  $indicator
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Indicator $indicator)
     {
-        //
+        $data = self::validation();
+        $indicator->update($data);
+        return redirect()->route('indicator.index')->withMessage(__('SUCCESS'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Indicator  $indicator
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Indicator $indicator)
     {
-        //
+        $indicator->delete();
+        return redirect()->route('indicator.index')->withMessage(__('SUCCESS'));
+    }
+
+    public static function validation()
+    {
+        return request()->validate([
+            'title' => 'required|string',
+            'points' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
+        ]);
     }
 }

@@ -9,6 +9,11 @@
 }
 
 @font-face {
+	font-family: 'Calibri';
+	src: url('../fonts/Calibri.ttf');
+}
+
+@font-face {
 	font-family: 'Yekan';
 	src: url('../fonts/Yekan.woff');
 }

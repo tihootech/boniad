@@ -21,3 +21,4 @@ Route::put('acc', 'AccController@update')->name('acc_update');
 // evaluations system
 Route::resource('branch', 'BranchController')->except('show');
 Route::resource('category', 'CategoryController')->except('show');
+Route::resource('indicator', 'IndicatorController')->except('show');

@@ -7,7 +7,7 @@
 	<div class="tile text-md-left text-center">
 		<a href="{{route('category.index')}}" class="btn btn-primary">
 			<i class="material-icons">arrow_forward</i>
-			بازگشت به لیست شعب
+			بازگشت به لیست دسته بندی ها
 		</a>
 	</div>
     <div class="tile">
