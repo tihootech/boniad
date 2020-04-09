@@ -220,3 +220,23 @@ function comparedate($_date_mix_jalaly,$_date_mix_gregorian)
 	}
   return true ;
 }
+
+
+function persian_month_names($i=null)
+{
+    $list = [
+        1 => 'فروردین',
+        2 => 'اردیبهشت',
+        3 => 'خرداد',
+        4 => 'تیر',
+        5 => 'مرداد',
+        6 => 'شهریور',
+        7 => 'مهر',
+        8 => 'آبان',
+        9 => 'آذر',
+        10 => 'دی',
+        11 => 'بهمن',
+        12 => 'اسفند',
+    ];
+    return $i && isset($list[$i]) ? $list[$i] : $list;
+}

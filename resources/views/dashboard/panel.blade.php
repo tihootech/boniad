@@ -1,3 +1,5 @@
+@master
+
 <li>
 	<a class="app-menu__item @if(rn() == 'green_management') active @endif" href="{{route("green_management")}}">
 		<i class="ml-2 material-icons">eco</i>
@@ -25,3 +27,14 @@
 		<span class="app-menu__label">مدیریت شاخص ها</span>
 	</a>
 </li>
+
+@endmaster
+
+@branch
+<li>
+	<a class="app-menu__item @if(rn() == 'consumption.index') active @endif" href="{{route("consumption.index")}}">
+		<i class="ml-2 material-icons">timeline</i>
+		<span class="app-menu__label"> گزارش مصرف </span>
+	</a>
+</li>
+@endbranch

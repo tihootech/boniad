@@ -148,6 +148,9 @@ return [
         'branch_name'=> 'نام شعبه',
         'pwd'=> 'رمزعبور',
         'resource_name'=> 'نام منبع',
+        'amount'=> 'مقدار',
+        'month'=> 'ماه',
+        'year'=> 'سال',
     ],
 
 ];

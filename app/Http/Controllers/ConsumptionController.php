@@ -3,83 +3,77 @@
 namespace App\Http\Controllers;
 
 use App\Consumption;
+use App\Resource;
+use App\Branch;
 use Illuminate\Http\Request;
 
 class ConsumptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
     public function index()
     {
-        //
+        $consumptions = Consumption::query();
+        if (branch()) {
+            $branch = Branch::where('user_id', auth()->id())->first();
+            if (!$branch) {
+                return back()->withError('Not a valid branch');
+            }
+            $consumptions = $consumptions->where('branch_id', $branch->id);
+        }
+        $consumptions = $consumptions->latest()->paginate(25);
+        return view('app.consumption.index', compact('consumptions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $consumption = new Consumption;
+        $resources = Resource::all();
+        return view('app.consumption.form', compact('consumption','resources'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = self::validation();
+        $branch = Branch::where('user_id', auth()->id())->first();
+        if (!$branch) {
+            return back()->withError('Not a valid branch');
+        }
+        $data['branch_id'] = $branch->id;
+        Consumption::create($data);
+        return redirect()->route('consumption.index')->withMessage(__('SUCCESS'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Consumption  $consumption
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Consumption $consumption)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Consumption  $consumption
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Consumption $consumption)
     {
-        //
+        $resources = Resource::all();
+        return view('app.consumption.form', compact('consumption','resources'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Consumption  $consumption
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Consumption $consumption)
     {
-        //
+        $data = self::validation();
+        $consumption->update($data);
+        return redirect()->route('consumption.index')->withMessage(__('SUCCESS'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Consumption  $consumption
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Consumption $consumption)
     {
-        //
+        $consumption->delete();
+        return redirect()->route('consumption.index')->withMessage(__('SUCCESS'));
+    }
+
+    public static function validation()
+    {
+        return request()->validate([
+            'resource_id' => 'required|exists:resources,id',
+            'amount' => 'required|integer',
+            'month' => 'required|integer|between:1,12',
+            'year' => 'required|integer|digits:4',
+        ]);
     }
 }

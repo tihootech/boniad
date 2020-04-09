@@ -14,13 +14,14 @@ Auth::routes([
   'confirm' => false,
 ]);
 
-// general user account control
+// general user account management
 Route::get('acc', 'AccController@edit')->name('acc');
 Route::put('acc', 'AccController@update')->name('acc_update');
 
 // green management
 Route::resource('resource', 'ResourceController')->except(['show','create', 'edit']);
 Route::get('green-management', 'ResourceController@landing')->name('green_management');
+Route::resource('consumption', 'ConsumptionController')->except('show');
 
 // evaluations system
 Route::resource('branch', 'BranchController')->except('show');

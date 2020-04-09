@@ -26,6 +26,12 @@ function master()
     return $user && $user->type == 'master';
 }
 
+function branch()
+{
+    $user = auth()->user();
+    return $user && $user->type == 'branch';
+}
+
 function upload($new_file, $old_file=null)
 {
     delete_file($old_file);

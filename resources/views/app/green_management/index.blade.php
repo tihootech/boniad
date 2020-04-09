@@ -23,7 +23,7 @@
                         </form>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <button type="submit" form="update-{{$resource->id}}" class="btn btn-primary btn-block"> ویرایش </button>
+                                <button type="submit" form="update-{{$resource->id}}" class="btn btn-success btn-block"> ویرایش </button>
                             </div>
                             <div class="col-6">
                                 <form class="d-inline" action="{{route('resource.destroy', $resource->id)}}" method="post">

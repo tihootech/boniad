@@ -28,7 +28,7 @@
                 <select class="form-control" id="cat" name="category_id" required>
                     <option value="">بدون دسته بندی</option>
                     @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option value="{{$category->id}}" @if($category->id == $indicator->category_id) selected @endif>{{$category->name}}</option>
                     @endforeach
                 </select>
             </div>
