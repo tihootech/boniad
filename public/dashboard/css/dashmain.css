@@ -13887,11 +13887,11 @@ be a descendant of the grid when it is being dragged.
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size:14px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding: 12px 15px;
-  font-size: 1.08em;
   border-right: 3px solid transparent;
   -webkit-transition: border-left-color 0.3s ease, background-color 0.3s ease;
   -o-transition: border-left-color 0.3s ease, background-color 0.3s ease;
@@ -15332,4 +15332,18 @@ input[type=number]::-webkit-inner-spin-button:after {
 
 .custom-control-label > span {
 	padding-right: 25px;
+}
+
+.material-icons.icon {
+    position: relative;
+    margin-left: 3px;
+    top: 3px;
+    font-size: 18px;
+}
+
+.btn .material-icons {
+    font-size: 16px;
+    position: relative;
+    margin-left: 3px;
+    top: 3px;
 }

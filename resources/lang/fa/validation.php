@@ -145,6 +145,8 @@ return [
         'hood'=> 'محله',
         'current_password'=> 'رمزعبور فعلی',
         'code'=> 'کد تایید',
+        'branch_name'=> 'نام شعبه',
+        'pwd'=> 'رمزعبور',
     ],
 
 ];

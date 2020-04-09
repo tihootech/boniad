@@ -11,12 +11,14 @@
         </div>
     </div>
     <ul class="app-menu">
+
         <li>
             <a class="app-menu__item @if(rn() == 'dashboard') active @endif" href="{{route("dashboard")}}">
                 <i class="ml-2 material-icons">dashboard</i>
                 <span class="app-menu__label">داشبرد</span>
             </a>
         </li>
+
 
         @include('dashboard.panel')
 

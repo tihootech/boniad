@@ -18,7 +18,7 @@ class AccController extends Controller
     public function edit()
     {
     	$user = auth()->user();
-		return view('dashboard.acc.edit', compact('user'));
+		return view('app.acc.edit', compact('user'));
     }
 
 	public function update(Request $request)

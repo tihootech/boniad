@@ -17,3 +17,7 @@ Auth::routes([
 // general user account control
 Route::get('acc', 'AccController@edit')->name('acc');
 Route::put('acc', 'AccController@update')->name('acc_update');
+
+// evaluations system
+Route::resource('branch', 'BranchController')->except('show');
+Route::resource('category', 'CategoryController')->except('show');
