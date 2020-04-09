@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class IndicatorController extends Controller
 {
 
+    public function __construct()
+	{
+		$this->middleware('auth');
+		$this->middleware('master');
+	}
+    
     public function index()
     {
         $indicators = Indicator::latest()->paginate(25);

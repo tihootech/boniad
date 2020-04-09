@@ -30,6 +30,20 @@ function next_month($string_date,$sep='/')
     return implode($sep, $array);
 }
 
+function human_time($tatal_seconds, $display_seconds=true)
+{
+    $seconds = $tatal_seconds % 60;
+    $minutes = floor($tatal_seconds / 60);
+    $output = $minutes > 0 ? $minutes.' '.__('MINUTE') : '';
+    if ($minutes && $seconds && $display_seconds) {
+        $output .= __('AND');
+    }
+    if (!$minutes || $display_seconds) {
+        $output .= $seconds > 0 ? $seconds.' '.__('SECOND') : '';
+    }
+    return $output;
+}
+
 function human_date($timestamp)
 {
     return \Morilog\Jalali\Jalalian::forge($timestamp)->format('%d %B، %Y');

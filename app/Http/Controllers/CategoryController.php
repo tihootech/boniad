@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+    public function __construct()
+	{
+		$this->middleware('auth');
+		$this->middleware('master');
+	}
+    
     public function index()
     {
         $categories = Category::latest()->get();

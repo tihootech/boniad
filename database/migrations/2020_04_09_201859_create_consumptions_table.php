@@ -15,6 +15,11 @@ class CreateConsumptionsTable extends Migration
     {
         Schema::create('consumptions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('branch_id');
+            $table->unsignedInteger('resource_id');
+            $table->unsignedBigInteger('amount');
+            $table->unsignedSmallInteger('month');
+            $table->unsignedSmallInteger('year');
             $table->timestamps();
         });
     }

@@ -147,6 +147,7 @@ return [
         'code'=> 'کد تایید',
         'branch_name'=> 'نام شعبه',
         'pwd'=> 'رمزعبور',
+        'resource_name'=> 'نام منبع',
     ],
 
 ];

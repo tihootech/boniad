@@ -15,6 +15,10 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('evaluation_id');
+            $table->unsignedInteger('indicator_id');
+            $table->boolean('registered_by_master');
+            $table->integer('point');
             $table->timestamps();
         });
     }

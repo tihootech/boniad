@@ -61,29 +61,10 @@ function random_rgba($opacity=null)
     return "rgba(".rand(1,255).", ".rand(1,255).", ".rand(1,255).", $opacity)";
 }
 
-function urf($input){
-    return str_replace(' ', '-', $input);
-}
-
-function raw($input){
-    return str_replace('-', ' ', $input);
-}
-
 function class_name($string)
 {
     $class = str_replace('_', '', ucwords($string, '_'));;
     return "App\\$class";
-}
-
-function liked($otype, $oid)
-{
-    if ($user = auth()->user()) {
-        $owner_type = class_name($otype);
-        $like = \App\Like::where('owner_type', $owner_type)->where('owner_id', $oid)->where('liker_id', $user->id)->first();
-        return $like;
-    }else {
-        return false;
-    }
 }
 
 function prepare_multiple($inputs)
@@ -97,28 +78,6 @@ function prepare_multiple($inputs)
         }
     }
     return $result;
-}
-
-function update_filling_session($question)
-{
-    $filling = session('filling');
-    $filling['question_id'] = $question->id;
-    session(compact('filling'));
-}
-
-
-function human_time($tatal_seconds, $display_seconds=true)
-{
-    $seconds = $tatal_seconds % 60;
-    $minutes = floor($tatal_seconds / 60);
-    $output = $minutes > 0 ? $minutes.' '.__('MINUTE') : '';
-    if ($minutes && $seconds && $display_seconds) {
-        $output .= __('AND');
-    }
-    if (!$minutes || $display_seconds) {
-        $output .= $seconds > 0 ? $seconds.' '.__('SECOND') : '';
-    }
-    return $output;
 }
 
 function parray($array)
@@ -142,10 +101,4 @@ function parray($array)
     }else {
         return "[]";
     }
-}
-
-
-function user_types()
-{
-    return ['code_amooz', 'student', 'admin'];
 }

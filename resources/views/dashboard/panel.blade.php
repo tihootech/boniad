@@ -1,6 +1,6 @@
 <li>
-	<a class="app-menu__item @if(rn() == 'category.index') active @endif" href="{{route("category.index")}}">
-		<i class="ml-2 material-icons">spa</i>
+	<a class="app-menu__item @if(rn() == 'green_management') active @endif" href="{{route("green_management")}}">
+		<i class="ml-2 material-icons">eco</i>
 		<span class="app-menu__label">مدیریت سبز</span>
 	</a>
 </li>

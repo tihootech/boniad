@@ -15,6 +15,10 @@ class CreateEvaluationsTable extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('branch_id');
+            $table->unsignedSmallInteger('year');
+            $table->bigInteger('self_sum')->nullable();
+            $table->bigInteger('master_sum')->nullable();
             $table->timestamps();
         });
     }

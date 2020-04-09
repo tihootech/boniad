@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class BranchController extends Controller
 {
 
+    public function __construct()
+	{
+		$this->middleware('auth');
+		$this->middleware('master');
+	}
+
     public function index()
     {
         $branches = Branch::latest()->get();
