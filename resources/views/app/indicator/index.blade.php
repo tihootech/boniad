@@ -10,6 +10,14 @@
 			تعریفه شاخص جدید
 		</a>
 	</div>
+    <div class="tile text-center">
+        <a href="{{route('indicator.index')}}" class="btn btn-outline-primary btn-sm m-1"> همه دسته بندی ها </a>
+        @foreach ($categories as $category)
+            <a href="?cat={{$category->id}}" class="btn @if($category->id == request('cat')) btn-info @else btn-outline-info @endif btn-sm m-1">
+                {{$category->name}}
+            </a>
+        @endforeach
+    </div>
     <div class="tile">
 
 		@if ($indicators->count())
@@ -45,7 +53,7 @@
 					@endforeach
 				</tbody>
 			</table>
-            {{$indicators->links()}}
+            {{$indicators->appends($_GET)->links()}}
 		@else
 			@include('includes.nothing_found')
 		@endif

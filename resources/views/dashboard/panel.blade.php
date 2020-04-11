@@ -38,3 +38,10 @@
 	</a>
 </li>
 @endbranch
+
+<li>
+	<a class="app-menu__item @if(rn() == 'eval.landing') active @endif" href="{{route("eval.landing")}}">
+		<i class="ml-2 material-icons">donut_large</i>
+		<span class="app-menu__label"> ارزیابی </span>
+	</a>
+</li>

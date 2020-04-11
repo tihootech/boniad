@@ -19,7 +19,7 @@
 					<tr>
 						<th scope="col"> ردیف </th>
 						<th scope="col"> نام دسته بندی </th>
-						<th scope="col" colspan="2"> عملیات </th>
+						<th scope="col" colspan="3"> عملیات </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,13 +28,25 @@
 							<th scope="row"> {{$index+1}} </th>
 							<td> {{$category->name}} </td>
 							<td>
-								<a href="{{route('category.edit', $category->id)}}"> <i class="material-icons icon">edit</i> </a>
+								<a href="{{route('indicator.create')}}?cat={{$category->id}}"
+                                    data-toggle="popover" data-trigger="hover" data-placement="top" data-content="تعریف شاخص برای این دسته بندی">
+                                    <i class="material-icons icon text-info">add</i>
+                                </a>
+							</td>
+							<td>
+								<a href="{{route('category.edit', $category->id)}}"
+                                    data-toggle="popover" data-trigger="hover" data-placement="top" data-content="ویرایش">
+                                    <i class="material-icons icon">edit</i>
+                                </a>
 							</td>
 							<td>
 								<form class="d-inline" action="{{route('category.destroy', $category->id)}}" method="post">
 									@csrf
 									@method('DELETE')
-									<a href="javascript:void" class="delete"> <i class="material-icons icon text-danger">delete</i> </a>
+									<a href="javascript:void" class="delete"
+                                        data-toggle="popover" data-trigger="hover" data-placement="top" data-content="حذف">
+                                        <i class="material-icons icon text-danger">delete</i>
+                                    </a>
 								</form>
 							</td>
 						</tr>

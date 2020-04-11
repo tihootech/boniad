@@ -14,11 +14,18 @@ class IndicatorController extends Controller
 		$this->middleware('auth');
 		$this->middleware('master');
 	}
-    
-    public function index()
+
+    public function index(Request $request)
     {
-        $indicators = Indicator::latest()->paginate(25);
-        return view('app.indicator.index', compact('indicators'));
+        $categories = Category::all();
+        $indicators = Indicator::query();
+        if ($cat = $request->cat) {
+            $indicators = $indicators->where('category_id', $cat);
+        }else {
+            $indicators = $indicators->latest();
+        }
+        $indicators = $indicators->paginate(25);
+        return view('app.indicator.index', compact('indicators', 'categories'));
     }
 
     public function create()

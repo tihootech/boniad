@@ -27,3 +27,14 @@ Route::resource('consumption', 'ConsumptionController')->except('show');
 Route::resource('branch', 'BranchController')->except('show');
 Route::resource('category', 'CategoryController')->except('show');
 Route::resource('indicator', 'IndicatorController')->except('show');
+
+Route::get('evaluation', 'EvaluationController@landing')->name('eval.landing');
+Route::get('evaluation/list', 'EvaluationController@list')->name('eval.list');
+Route::get('evaluation/new', 'EvaluationController@new')->name('eval.new');
+Route::get('evaluation/{evaluation}', 'EvaluationController@show')->name('eval.show');
+
+Route::post('evaluation/store', 'EvaluationController@store')->name('eval.store');
+Route::post('evaluation/next/{evaluation}/{category}', 'EvaluationController@next')->name('eval.next');
+Route::delete('evaluation/{evaluation}', 'EvaluationController@destroy')->name('eval.destroy');
+
+Route::get('evaluate/{evaluation}/{category?}', 'EvaluationController@wizard')->name('evaluate');

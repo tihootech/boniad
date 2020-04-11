@@ -23,8 +23,8 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset("general/fonts.css")}}">
     <link rel="stylesheet" type="text/css" href="{{asset("dashboard/css/pdp.css")}}">
-    <link rel="stylesheet" type="text/css" href="{{asset("dashboard/css/dashmain.css?v=1.1")}}">
-    <link rel="stylesheet" type="text/css" href="{{asset("dashboard/css/dashcustom.css?v=1.3")}}">
+    <link rel="stylesheet" type="text/css" href="{{asset("dashboard/css/dashmain.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{asset("dashboard/css/dashcustom.css")}}">
 
 </head>
 
@@ -56,7 +56,7 @@
     <script src="{{asset("dashboard/js/cats-treeview.js")}}"></script>
     <script src="{{asset("dashboard/js/pdp.min.js")}}"></script>
     <script src="{{asset("dashboard/js/dashmain.js")}}"></script>
-    <script src="{{asset("dashboard/js/dashcustom.js?v=1.4")}}"></script>
+    <script src="{{asset("dashboard/js/dashcustom.js")}}"></script>
     <script src="{{asset("dashboard/js/plugins/chart.js")}}"></script>
 
     @yield('charts')

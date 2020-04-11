@@ -5,6 +5,12 @@ function user($p)
     return auth()->user() ? auth()->user()->$p : null;
 }
 
+function current_branch($p=null)
+{
+    $branch = App\Branch::where('user_id', auth()->id())->first();
+    return $branch ? ($p ? $branch->$p : $branch) : null;
+}
+
 function rn()
 {
     return request()->route()->getName();
@@ -107,4 +113,8 @@ function parray($array)
     }else {
         return "[]";
     }
+}
+
+function all_indicators_total_max_points() {
+    return App\Indicator::sum('points');
 }
