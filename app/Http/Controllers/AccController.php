@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Branch;
 use App\UserActivity;
 
 class AccController extends Controller
 {
 	public function __construct()
 	{
-		// all users can edit and update their own credentials
 		$this->middleware('auth');
+		$this->middleware('master')->only('master_update');
 	}
 
     public function edit()
@@ -49,6 +50,23 @@ class AccController extends Controller
 			}
 		}else {
 			return back()->withError(__('WRONG_CURRENT_PASSWORD'));
+		}
+	}
+
+	public function master_update(Request $request)
+	{
+		$request->validate([
+			'branch_id' => 'required|exists:branches,id',
+			'pwd' => 'required|string|min:4',
+		]);
+		$branch = Branch::find($request->branch_id);
+		$user = $branch->user;
+		if (!$user) {
+			return back()->withError('Database Error!');
+		}else {
+			$user->password = bcrypt($request->pwd);
+			$user->save();
+			return back()->withMessage('رمز عبور شعبه '.$branch->name.' با موفقیت تغییر یافت');
 		}
 	}
 }

@@ -146,6 +146,7 @@ return [
         'current_password'=> 'رمزعبور فعلی',
         'code'=> 'کد تایید',
         'branch_name'=> 'نام شعبه',
+        'branch_id'=> 'شعبه انتخاب شده',
         'pwd'=> 'رمزعبور',
         'resource_name'=> 'نام منبع',
         'amount'=> 'مقدار',
