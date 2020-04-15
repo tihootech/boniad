@@ -14,41 +14,48 @@
 
 		@if ($branches->count())
 
-			<table class="table table-bordered table-striped table-hover">
-				<thead>
-					<tr>
-						<th scope="col"> ردیف </th>
-						<th scope="col"> نام شعبه </th>
-						<th scope="col"> نام کاربری جهت ورود به سیستم </th>
-						<th scope="col" colspan="3"> عملیات </th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach ($branches as $index => $branch)
-						<tr>
-							<th scope="row"> {{$index+1}} </th>
-							<td> {{$branch->name}} </td>
-							<td> {{$branch->user->name ?? 'Database Error'}} </td>
-							<td>
-								<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#change-branch-password"
-                                    data-branch-id="{{$branch->id}}" data-branch-name="{{$branch->name}}">
-                                    تغییر رمز عبور
-                                </button>
-							</td>
-							<td>
-								<a href="{{route('branch.edit', $branch->id)}}"> <i class="material-icons icon">edit</i> </a>
-							</td>
-							<td>
-								<form class="d-inline" action="{{route('branch.destroy', $branch->id)}}" method="post">
-									@csrf
-									@method('DELETE')
-									<a href="javascript:void" class="delete"> <i class="material-icons icon text-danger">delete</i> </a>
-								</form>
-							</td>
-						</tr>
-					@endforeach
-				</tbody>
-			</table>
+			<div class="table-responsive-lg">
+                <table class="table table-bordered table-striped table-hover">
+    				<thead>
+    					<tr>
+    						<th scope="col"> ردیف </th>
+    						<th scope="col"> نام شعبه </th>
+    						<th scope="col"> نام کاربری جهت ورود به سیستم </th>
+    						<th scope="col" colspan="4"> عملیات </th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					@foreach ($branches as $index => $branch)
+    						<tr>
+    							<th scope="row"> {{$index+1}} </th>
+    							<td> {{$branch->name}} </td>
+    							<td> {{$branch->user->name ?? 'Database Error'}} </td>
+    							<td>
+    								<a href="{{route('quantity.edit', $branch->id)}}" class="btn btn-outline-info btn-sm">
+                                        مدیریت هدف کمی
+                                    </a>
+    							</td>
+    							<td>
+    								<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#change-branch-password"
+                                        data-branch-id="{{$branch->id}}" data-branch-name="{{$branch->name}}">
+                                        تغییر رمز عبور
+                                    </button>
+    							</td>
+    							<td>
+    								<a href="{{route('branch.edit', $branch->id)}}"> <i class="material-icons icon">edit</i> </a>
+    							</td>
+    							<td>
+    								<form class="d-inline" action="{{route('branch.destroy', $branch->id)}}" method="post">
+    									@csrf
+    									@method('DELETE')
+    									<a href="javascript:void" class="delete"> <i class="material-icons icon text-danger">delete</i> </a>
+    								</form>
+    							</td>
+    						</tr>
+    					@endforeach
+    				</tbody>
+    			</table>
+            </div>
 
             <div class="modal fade" id="change-branch-password" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">

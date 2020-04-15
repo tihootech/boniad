@@ -14,10 +14,14 @@ Auth::routes([
   'confirm' => false,
 ]);
 
-// general user account management
+// general : user account management
 Route::get('acc', 'AccController@edit')->name('acc');
 Route::put('acc', 'AccController@update')->name('acc_update');
 Route::put('acc/master', 'AccController@master_update')->name('master_acc_update');
+
+// general : quantity management
+Route::get('quantity/{branch}', 'QuantityController@edit')->name('quantity.edit');
+Route::put('quantity/{branch}', 'QuantityController@update')->name('quantity.update');
 
 // green management
 Route::resource('resource', 'ResourceController')->except(['show','create', 'edit']);
