@@ -37,21 +37,21 @@
 							<td class="calibri"> {{$evaluation->year}} </td>
 							<td>
                                 @if ($evaluation->master_sum)
-                                    <span class="calibri"> {{$evaluation->master_sum}} </span>
+                                    <span class="calibri"> {{round($evaluation->master_sum, 2)}} </span>
                                 @else
                                     <em class="text-danger"> تکمیل نشده </em>
                                 @endif
                             </td>
 							<td>
                                 @if ($evaluation->self_sum)
-                                    <span class="calibri"> {{$evaluation->self_sum}} </span>
+                                    <span class="calibri"> {{round($evaluation->self_sum, 2)}} </span>
                                 @else
                                     <em class="text-danger"> تکمیل نشده </em>
                                 @endif
                             </td>
 							<td>
                                 @if ($evaluation->ave)
-                                    <span class="calibri"> {{$evaluation->ave}} </span>
+                                    <span class="calibri"> {{round($evaluation->ave, 2)}} </span>
                                 @else
                                     <em class="text-danger"> نامشخص </em>
                                 @endif
@@ -60,7 +60,13 @@
                                 <a href="{{route('eval.show', $evaluation->id)}}" class="btn btn-sm btn-outline-info"> جزییات </a>
                             </td>
                             <td>
-                                <a href="{{route('evaluate', $evaluation->id)}}" class="btn btn-sm btn-outline-success"> ویرایش </a>
+                                <a href="{{route('evaluate', $evaluation->id)}}" class="btn btn-sm btn-outline-success">
+                                    @master
+                                        {{$evaluation->master_sum ? 'ویرایش' : 'تکمیل کردن'}}
+                                    @else
+                                        {{$evaluation->self_sum ? 'ویرایش' : 'تکمیل کردن'}}
+                                    @endmaster
+                                </a>
                             </td>
 							@master
                                 <td>

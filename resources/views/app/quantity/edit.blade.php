@@ -19,7 +19,7 @@
 			<div class="row">
 				@foreach ($resources as $resource)
 					<div class="col-lg-3 col-md-4 form-group align-self-end">
-						<p> {{$resource->name}} </p>
+						<p> {{$resource->name}} ({{$resource->unit}}) </p>
 						<input type="number" min="1" class="form-control" name="resources[{{$resource->id}}]" required
 							value="{{$resource->quantity_target($branch->id)}}">
 					</div>

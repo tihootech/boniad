@@ -106,29 +106,53 @@ class EvaluationController extends Controller
 
 		foreach ($request->answers as $indicator_id => $raw_answer) {
 
+
 			// check if answer is not greater than maximum and not lower than 0
 			$indicator = Indicator::findOrFail($indicator_id);
-			if ($raw_answer > $indicator->points || $raw_answer < 0) {
+			$max = $indicator->quantity_target($evaluation->branch_id);
+			if ($raw_answer > $max || $raw_answer < 0) {
 				return back()->withError('Wrong Input!');
 			}
+
+			// calculate point
+			$point = ($raw_answer * $indicator->points) / $max;
 
 			// register or upate answer in database
 			$answer = Answer::where('registered_by_master', master())
 				->where('evaluation_id', $evaluation->id)
 				->where('indicator_id', $indicator_id)->first();
+
 			if ($answer) {
 				$answer->update([
-					'point' => $raw_answer
+					'target' => $max,
+					'answer' => $raw_answer,
+					'point' => $point,
 				]);
 			}else {
 				Answer::create([
 					'registered_by_master' => master(),
 					'evaluation_id' => $evaluation->id,
 					'indicator_id' => $indicator_id,
-					'point' => $raw_answer,
+					'target' => $max,
+					'answer' => $raw_answer,
+					'point' => $point,
 				]);
 			}
 		}
+
+		// upload files if any
+		if ($request->documents && is_array($request->documents) && count($request->documents)) {
+			foreach ($request->documents as $indicator_id => $uploaded_doc) {
+				if ($uploaded_doc) {
+					$answer = Answer::where('registered_by_master', master())
+						->where('evaluation_id', $evaluation->id)
+						->where('indicator_id', $indicator_id)->first();
+					$answer->document = upload($uploaded_doc, $answer->document);
+					$answer->save();
+				}
+			}
+		}
+
 		$next = $category->next();
 
 		// check if evaluation record needs to be updated

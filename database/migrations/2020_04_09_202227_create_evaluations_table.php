@@ -17,8 +17,8 @@ class CreateEvaluationsTable extends Migration
             $table->id();
             $table->unsignedInteger('branch_id');
             $table->unsignedSmallInteger('year');
-            $table->bigInteger('self_sum')->nullable();
-            $table->bigInteger('master_sum')->nullable();
+            $table->double('self_sum')->nullable();
+            $table->double('master_sum')->nullable();
             $table->timestamps();
         });
     }

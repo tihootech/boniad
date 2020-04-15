@@ -28,6 +28,7 @@
 						<th scope="col"> ردیف </th>
 						<th scope="col"> عنوان شاخص </th>
 						<th scope="col"> سقف امتیازات </th>
+                        <th scope="col"> آپلود مدارک </th>
                         <th scope="col"> دسته بندی </th>
 						<th scope="col" colspan="2"> عملیات </th>
 					</tr>
@@ -38,6 +39,13 @@
 							<th scope="row"> {{$index+1}} </th>
 							<td> {{$indicator->title}} </td>
 							<td> {{$indicator->points}} </td>
+							<td>
+                                @if ($indicator->document)
+                                    <span class="text-success"> بلی </span>
+                                @else
+                                    <span class="text-danger"> خیر </span>
+                                @endif
+                            </td>
 							<td> {{$indicator->category->name ?? '-'}} </td>
 							<td>
 								<a href="{{route('indicator.edit', $indicator->id)}}"> <i class="material-icons icon">edit</i> </a>

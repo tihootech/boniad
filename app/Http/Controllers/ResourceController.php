@@ -26,15 +26,27 @@ class ResourceController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['resource_name' => 'required|unique:resources,name']);
-        Resource::create(['name' => $request->resource_name]);
+        $request->validate([
+            'resource_name' => 'required|unique:resources,name',
+            'resource_unit' => 'required|string',
+        ]);
+        Resource::create([
+            'name' => $request->resource_name,
+            'unit' => $request->resource_unit,
+        ]);
         return back()->withMessage(__('SUCCESS'));
     }
 
     public function update(Request $request, Resource $resource)
     {
-        $request->validate(['name' => 'required|unique:resources,name,'.$resource->id]);
-        $resource->update(['name' => $request->name]);
+        $request->validate([
+            'name' => 'required|unique:resources,name,'.$resource->id,
+            'unit' => 'required|string',
+        ]);
+        $resource->update([
+            'name' => $request->name,
+            'unit' => $request->unit,
+        ]);
         return back()->withMessage(__('SUCCESS'));
     }
 

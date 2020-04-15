@@ -18,7 +18,10 @@ class CreateAnswersTable extends Migration
             $table->unsignedInteger('evaluation_id');
             $table->unsignedInteger('indicator_id');
             $table->boolean('registered_by_master');
-            $table->integer('point');
+            $table->integer('target');
+            $table->integer('answer');
+            $table->double('point');
+            $table->string('document')->nullable();
             $table->timestamps();
         });
     }

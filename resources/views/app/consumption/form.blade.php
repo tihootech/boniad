@@ -13,23 +13,27 @@
 
     <div class="tile">
 
-		<form class="row justify-content-center" action="@if($consumption->id) {{route('consumption.update', $consumption->id)}} @else {{route('consumption.store')}} @endif" method="post">
+		<form class="row justify-content-center align-items-center" method="post" enctype="multipart/form-data"
+            action="@if($consumption->id) {{route('consumption.update', $consumption->id)}} @else {{route('consumption.store')}} @endif">
             @csrf
             @if($consumption->id)
                 @method('PUT')
             @endif
 
-            <div class="col-md-4 form-group">
+            <div class="col-md-3 form-group">
                 <label for="res"> انتخاب منبع </label>
                 <select class="form-control" id="res" name="resource_id" required>
                     <option value="">انتخاب کنید</option>
                     @foreach ($resources as $resource)
-                        <option value="{{$resource->id}}" @if($resource->id == $consumption->resource_id) selected @endif>{{$resource->name}}</option>
+                        <option value="{{$resource->id}}" @if($resource->id == $consumption->resource_id) selected @endif>
+                            {{$resource->name}}
+                            ({{$resource->unit}})
+                        </option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="col-md-3 form-group">
+            <div class="col-md-2 form-group">
                 <label for="amount"> مقدار مصرف </label>
                 <input id="amount" type="number" class="form-control" name="amount" value="{{$consumption->amount ?? old('amount')}}" required>
             </div>
@@ -44,11 +48,23 @@
                 </select>
             </div>
 
-            <div class="col-md-3 form-group">
+            <div class="col-md-2 form-group">
                 <label for="year"> سال </label>
                 <input id="year" type="number" class="form-control" name="year" value="{{$consumption->year ?? old('year')}}" required>
             </div>
 
+            <div class="col-md-3 form-group">
+                <label for="document">
+                    بارگذاری قبض
+                </label>
+                <input id="document" type="file" class="form-control" name="document">
+            </div>
+
+            @if ($consumption->document)
+                <div class="col-12 text-center">
+                    <p class="text-danger"> شما قبلا قبض خود را آپلود کرده اید. در صورت تمایل میتوانید با آپلود مجدد فایل قبلی را جایگزین کنید </p>
+                </div>
+            @endif
             <hr class="w-100">
 
             <div class="col-md-2 align-self-center">

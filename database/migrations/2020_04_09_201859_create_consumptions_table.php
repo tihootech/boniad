@@ -20,6 +20,7 @@ class CreateConsumptionsTable extends Migration
             $table->unsignedBigInteger('amount');
             $table->unsignedSmallInteger('month');
             $table->unsignedSmallInteger('year');
+            $table->string('document')->nullable();
             $table->timestamps();
         });
     }

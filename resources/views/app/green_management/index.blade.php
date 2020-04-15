@@ -19,7 +19,8 @@
                         <form class="d-inline" action="{{route('resource.update', $resource->id)}}" method="post" id="update-{{$resource->id}}">
                             @csrf
                             @method('PUT')
-                            <input type="text" class="form-control" name="name" value="{{$resource->name}}">
+                            <input type="text" class="form-control my-1" name="name" value="{{$resource->name}}">
+                            <input type="text" class="form-control my-1" name="unit" value="{{$resource->unit}}">
                         </form>
                         <div class="row mt-2">
                             <div class="col-6">
@@ -48,6 +49,10 @@
             <div class="col-md-4">
                 <label for="resource-name"> یک نام انتخاب کنید </label>
                 <input id="resource-name" type="text" class="form-control" name="resource_name" value="{{old('resource_name')}}">
+            </div>
+            <div class="col-md-4">
+                <label for="resource-unit"> واحد مصرف انرژی </label>
+                <input id="resource-unit" type="text" class="form-control" name="resource_unit" value="{{old('resource_unit')}}">
             </div>
             <div class="col-md-2 align-self-end">
                 <button type="submit" class="btn btn-primary btn-block">

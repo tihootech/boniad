@@ -56,7 +56,7 @@ class ConsumptionController extends Controller
 
     public function update(Request $request, Consumption $consumption)
     {
-        $data = self::validation();
+        $data = self::validation($consumption);
         $consumption->update($data);
         return redirect()->route('consumption.index')->withMessage(__('SUCCESS'));
     }
@@ -67,13 +67,20 @@ class ConsumptionController extends Controller
         return redirect()->route('consumption.index')->withMessage(__('SUCCESS'));
     }
 
-    public static function validation()
+    public static function validation($consumption=null)
     {
-        return request()->validate([
+        $data = request()->validate([
             'resource_id' => 'required|exists:resources,id',
             'amount' => 'required|integer',
             'month' => 'required|integer|between:1,12',
             'year' => 'required|integer|digits:4',
         ]);
+
+        if ($new_file = request('document')) {
+            $old_file = $consumption ? $consumption->document : null;
+            $data['document'] = upload($new_file, $old_file);
+        }
+
+        return $data;
     }
 }

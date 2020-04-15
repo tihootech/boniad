@@ -38,6 +38,7 @@
 						<th scope="col"> مقدار مصرف </th>
                         <th scope="col"> سال </th>
                         <th scope="col"> ماه </th>
+                        <th scope="col"> فایل ضمیمه </th>
 						<th scope="col" colspan="2"> عملیات </th>
 					</tr>
 				</thead>
@@ -52,6 +53,13 @@
 							<td class="calibri"> {{$consumption->amount}} </td>
 							<td> {{$consumption->year}} </td>
 							<td> {{persian_month_names($consumption->month)}} </td>
+                            <td>
+                                @if ($consumption->document)
+                                    <a href="{{asset($consumption->document)}}" download> دانلود </a>
+                                @else
+                                    <em> - </em>
+                                @endif
+                            </td>
 							<td>
 								<a href="{{route('consumption.edit', $consumption->id)}}"> <i class="material-icons icon">edit</i> </a>
 							</td>

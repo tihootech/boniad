@@ -18,8 +18,12 @@
 				<tr>
 					<td>{{$category->name}}</td>
 					<td class="calibri">{{$category->max_points}}</td>
-					<th class="calibri {{$self > $master ? 'text-info' : 'text-danger'}} @if($self == $master) text-dark @endif">{{$self}}</th>
-					<th class="calibri {{$self < $master ? 'text-info' : 'text-danger'}} @if($self == $master) text-dark @endif">{{$master}}</th>
+					<th class="calibri {{$self > $master ? 'text-info' : 'text-danger'}} @if($self == $master) text-dark @endif">
+						{{round($self, 1)}}
+					</th>
+					<th class="calibri {{$self < $master ? 'text-info' : 'text-danger'}} @if($self == $master) text-dark @endif">
+						{{round($master, 1)}}
+					</th>
 					<th>
 						@if ($self && $master)
 							<span class="calibri"> {{($self+$master)/2}} </span>

@@ -20,7 +20,24 @@ class Indicator extends Model
 		}
 		$answer = Answer::where('evaluation_id', $evaluation_id)
 			->where('indicator_id', $this->id)->where('registered_by_master', $registered_by_master)->first();
+		return $answer->answer ?? null;
+	}
+
+	public function point_for($evaluation_id, $registered_by_master=null)
+	{
+		if ($registered_by_master === null) {
+			$registered_by_master = master();
+		}
+		$answer = Answer::where('evaluation_id', $evaluation_id)
+			->where('indicator_id', $this->id)->where('registered_by_master', $registered_by_master)->first();
 		return $answer->point ?? null;
+	}
+
+	public function uploaded_documnet($evaluation_id)
+	{
+		$answer = Answer::where('evaluation_id', $evaluation_id)
+			->where('indicator_id', $this->id)->where('registered_by_master', false)->first();
+		return $answer->document ?? null;
 	}
 
 	public function quantity_target($branch_id)

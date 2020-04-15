@@ -18,6 +18,7 @@ class CreateIndicatorsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->text('title');
             $table->integer('points');
+            $table->boolean('document')->default(0);
             $table->timestamps();
         });
     }

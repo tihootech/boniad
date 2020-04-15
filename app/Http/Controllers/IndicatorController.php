@@ -67,6 +67,7 @@ class IndicatorController extends Controller
             'title' => 'required|string',
             'points' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
+            'document' => 'required|boolean',
         ]);
     }
 }

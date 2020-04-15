@@ -22,7 +22,7 @@ class Branch extends Model
 
     public function resources_not_completed()
     {
-        $indicators = Indicator::count();
+        $indicators = Resource::count();
         $quantities = Quantity::where('branch_id', $this->id)->where('target_type', Resource::class)->count();
         return $indicators != $quantities;
     }

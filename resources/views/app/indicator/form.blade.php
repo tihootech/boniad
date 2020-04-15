@@ -41,6 +41,14 @@
                 <input id="points" type="number" class="form-control" name="points" value="{{$indicator->points ?? old('points')}}" required>
             </div>
 
+            <div class="col-md-2 form-group">
+                <label for="document"> آپلود مدارک </label>
+                <select class="form-control" name="document" id="document">
+                    <option value="0"> نیازی نیست </option>
+                    <option value="1" @if(old('document') || $indicator->document) selected @endif> نیاز دارد </option>
+                </select>
+            </div>
+
             <hr class="w-100">
 
             <div class="col-md-2 align-self-center">

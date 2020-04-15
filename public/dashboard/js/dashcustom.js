@@ -10,10 +10,16 @@ $(document).ready(function () {
 		modal.find('#branch-id-target').val(id);
 	});
 
-	// indicators range input
-	$('.indicator').on('input', function () {
-		var value = $(this).val();
-		$(this).parents('.row').find('.result').html(value);
+	// evaluation answers and indicators limit
+	$('.eval-answer').on('input', function () {
+		var value = Number($(this).val());
+		var min = Number($(this).attr('min'));
+		var max = Number($(this).attr('max'));
+		if (value < min || value > max) {
+			$(this).siblings('.indicator-limit-error').slideDown();
+		}else {
+			$(this).siblings('.indicator-limit-error').slideUp();
+		}
 	});
 
 });
