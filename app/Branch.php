@@ -13,6 +13,16 @@ class Branch extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function resource_patterns()
+    {
+        return $this->hasMany(Quantity::class)->where('target_type', Resource::class);
+    }
+
+    public function indicator_patterns()
+    {
+        return $this->hasMany(Quantity::class)->where('target_type', Indicator::class);
+    }
+
     public function indicators_not_completed()
     {
         $indicators = Indicator::count();

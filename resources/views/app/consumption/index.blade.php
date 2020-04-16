@@ -18,11 +18,11 @@
         @endmaster
     </div>
 
-    @master
     <div class="tile">
         <h4> جستجوی پسرفته </h4>
         <hr>
         <form class="row justify-content-center">
+            @master
             <div class="col-md-3 form-group">
                 <label for="branch"> انتخاب شعبه </label>
                 <select class="select2" name="b[]" id="branch" multiple>
@@ -34,6 +34,7 @@
                     @endforeach
                 </select>
             </div>
+            @endmaster
             <div class="col-md-3 form-group">
                 <label for="resource"> انتخاب منبع </label>
                 <select class="select2" name="r[]" id="resource" multiple>
@@ -66,7 +67,6 @@
             </div>
         </form>
     </div>
-    @endmaster
 
     <div class="tile">
         @master

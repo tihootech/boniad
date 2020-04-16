@@ -28,7 +28,8 @@ class HomeController extends Controller
             $branches = Branch::all();
             return view('home', compact('branches'));
         }else {
-            return view('home');
+            $branch = current_branch();
+            return view('home', compact('branch'));
         }
     }
 }

@@ -34,6 +34,53 @@
                     @endif
                 @endforeach
             </div>
+        @else
+            <h4 class="text-primary mb-3"> الگوی مصرف شما </h4>
+            <div class="row">
+                @if ($branch->resource_patterns->count())
+                    @foreach ($branch->resource_patterns as $quantity)
+                        <div class="col-md-3 my-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <b class="text-primary"> {{$quantity->target->name ?? '-'}} : </b>
+                                    <span class="calibri"> {{number_format($quantity->value)}} </span>
+                                    <span> {{$quantity->target->unit ?? '-'}} </span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="alert alert-warning">
+                        برای شما تعریف نشده است
+                    </div>
+                @endif
+            </div>
+            <hr>
+            <h4 class="text-primary mb-3"> هدف کمی شاخص های تعریف شده برای شما </h4>
+            <a href="#indicators-list" data-toggle="collapse">
+                <i class="material-icons icon">keyboard_backspace</i>
+                مشاهده لیست کامل
+            </a>
+            <div class="collapse" id="indicators-list">
+                <div class="row">
+                    @if ($branch->indicator_patterns->count())
+                        @foreach ($branch->indicator_patterns as $quantity)
+                            <div class="col-md-3 my-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <b> {{$quantity->target->title ?? '-'}} : </b>
+                                        <span class="calibri text-primary"> {{number_format($quantity->value)}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="alert alert-warning">
+                            برای شما تعریف نشده است
+                        </div>
+                    @endif
+                </div>
+            </div>
         @endmaster
 
     </div>
