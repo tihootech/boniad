@@ -13,10 +13,10 @@ class CategoryController extends Controller
 		$this->middleware('auth');
 		$this->middleware('master');
 	}
-    
+
     public function index()
     {
-        $categories = Category::latest()->get();
+        $categories = Category::all();
         return view('app.category.index', compact('categories'));
     }
 

@@ -17,6 +17,7 @@ class CreateConsumptionsTable extends Migration
             $table->id();
             $table->unsignedInteger('branch_id');
             $table->unsignedInteger('resource_id');
+            $table->unsignedBigInteger('target');
             $table->unsignedBigInteger('amount');
             $table->unsignedSmallInteger('month');
             $table->unsignedSmallInteger('year');

@@ -19,11 +19,17 @@ class IndicatorController extends Controller
     {
         $categories = Category::all();
         $indicators = Indicator::query();
+
+        if ($indicator_title = $request->i) {
+            $indicators = $indicators->where('title', 'like', "%$indicator_title%");
+        }
+
         if ($cat = $request->cat) {
             $indicators = $indicators->where('category_id', $cat);
         }else {
             $indicators = $indicators->latest();
         }
+
         $indicators = $indicators->paginate(25);
         return view('app.indicator.index', compact('indicators', 'categories'));
     }

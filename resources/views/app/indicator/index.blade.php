@@ -17,6 +17,15 @@
                 {{$category->name}}
             </a>
         @endforeach
+        <hr>
+        <form class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 form-group">
+                <input type="text" name="i" value="{{request('i')}}" placeholder="جستجو شاخص" class="form-control">
+            </div>
+            <div class="col-lg-2 col-md-3 form-group">
+                <button type="submit" class="btn btn-primary btn-block"> جستجو </button>
+            </div>
+        </form>
     </div>
     <div class="tile">
 

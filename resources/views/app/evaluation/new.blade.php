@@ -55,9 +55,21 @@
                                     تکمیل شده توسط خود شعبه : <span class="text-primary"> {{$evaluation->self_sum ? 'بلی' : 'خیر'}} </span>
                                 @endmaster
                                 <hr>
-                                <a href="{{route('evaluate', $evaluation->id)}}" class="btn btn-primary">
+
+                                <a href="{{route('evaluate', $evaluation->id)}}" class="btn btn-primary m-1">
                                     <i class="material-icons">keyboard_backspace</i> ورود به ارزیابی
                                 </a>
+
+                                @master
+                                    <form class="d-inline" action="{{route('eval.destroy', $evaluation->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="javascript:void" class="btn btn-danger m-1 delete">
+                                            <i class="material-icons">delete</i> حذف
+                                        </a>
+                                    </form>
+                                @endmaster
+
                             </div>
                         </div>
                     </div>

@@ -15,9 +15,11 @@ class ConsumptionController extends Controller
 		$this->middleware('auth');
 	}
 
-    public function index()
+    public function index(Request $request)
     {
         $consumptions = Consumption::query();
+
+        // limit access for branches
         if (branch()) {
             $branch = Branch::where('user_id', auth()->id())->first();
             if (!$branch) {
@@ -25,8 +27,31 @@ class ConsumptionController extends Controller
             }
             $consumptions = $consumptions->where('branch_id', $branch->id);
         }
+
+        // filter results
+        if ($request->b && is_array($request->b) && count($request->b)) {
+            $consumptions = $consumptions->whereIn('branch_id', $request->b);
+        }
+
+        if ($request->r && is_array($request->r) && count($request->r)) {
+            $consumptions = $consumptions->whereIn('resource_id', $request->r);
+        }
+
+        if ($request->m && is_array($request->m) && count($request->m)) {
+            $consumptions = $consumptions->whereIn('month', $request->m);
+        }
+
+        if ($request->y) {
+            $consumptions = $consumptions->whereYear($request->y);
+        }
+
+
+        // search box neccessary variables
+        $branches = Branch::all();
+        $resources = Resource::all();
+
         $consumptions = $consumptions->latest()->paginate(25);
-        return view('app.consumption.index', compact('consumptions'));
+        return view('app.consumption.index', compact('consumptions', 'branches', 'resources'));
     }
 
     public function create()

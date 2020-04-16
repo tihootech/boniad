@@ -189,8 +189,20 @@ class EvaluationController extends Controller
 
 	public function destroy(Evaluation $evaluation)
 	{
+		// delete uploaded documents for answers
+		foreach ($evaluation->answers as $answer) {
+			if ($path = $answer->document) {
+				delete_file($path);
+			}
+		}
+
+		// delete answers in database
 		Answer::where('evaluation_id', $evaluation->id)->delete();
+
+		// delete item itself
 		$evaluation->delete();
-		return back()->withMessa( __('SUCCESS') );
+
+		// redirection
+		return back()->withMessage( __('SUCCESS') );
 	}
 }
