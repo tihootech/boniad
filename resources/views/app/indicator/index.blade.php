@@ -39,7 +39,7 @@
 						<th scope="col"> سقف امتیازات </th>
                         <th scope="col"> آپلود مدارک </th>
                         <th scope="col"> دسته بندی </th>
-						<th scope="col" colspan="2"> عملیات </th>
+						<th scope="col" colspan="3"> عملیات </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,6 +56,11 @@
                                 @endif
                             </td>
 							<td> {{$indicator->category->name ?? '-'}} </td>
+							<td>
+								<a href="{{route('quantity.edit_pattetn', ['indicator', $indicator->id])}}" class="btn btn-outline-info btn-sm">
+                                    هدف کمی شاخص
+                                </a>
+							</td>
 							<td>
 								<a href="{{route('indicator.edit', $indicator->id)}}"> <i class="material-icons icon">edit</i> </a>
 							</td>

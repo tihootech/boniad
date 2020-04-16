@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Indicator;
 use App\Category;
+use App\Quantity;
 use Illuminate\Http\Request;
 
 class IndicatorController extends Controller
@@ -44,8 +45,8 @@ class IndicatorController extends Controller
     public function store(Request $request)
     {
         $data = self::validation();
-        Indicator::create($data);
-        return redirect()->route('indicator.index')->withMessage(__('SUCCESS'));
+        $indicator = Indicator::create($data);
+        return redirect()->route('quantity.edit_pattetn', ['indicator', $indicator->id])->withMessage(__('SUCCESS'));
     }
 
     public function edit(Indicator $indicator)
@@ -63,6 +64,7 @@ class IndicatorController extends Controller
 
     public function destroy(Indicator $indicator)
     {
+        Quantity::where('target_id', $indicator->id)->where('target_type', Indicator::class)->delete();
         $indicator->delete();
         return redirect()->route('indicator.index')->withMessage(__('SUCCESS'));
     }

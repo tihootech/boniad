@@ -11,6 +11,27 @@ use Illuminate\Http\Request;
 
 class QuantityController extends Controller
 {
+
+    public function edit_pattetn($type, $id)
+    {
+        $categories = Category::all();
+        $branches = Branch::all();
+        $class = class_name($type);
+        $object = $class::findOrFail($id);
+        return view('app.quantity.edit_pattern', compact('type', 'id', 'object', 'categories', 'branches'));
+    }
+
+    public function update_pattetn($type, $id, Request $request)
+    {
+        $class = class_name($type);
+        if ($request->branches && is_array($request->branches)) {
+            foreach ($request->branches as $branch_id => $value) {
+                Quantity::createOrUpdate($id, $class, $branch_id, $value);
+            }
+        }
+        return redirect()->route($type.'.index')->withMessage( __('SUCCESS') );
+    }
+
     public function edit(Branch $branch)
     {
         $categories = Category::all();
@@ -27,38 +48,12 @@ class QuantityController extends Controller
 
         // resources
         foreach ($request->resources as $resource_id => $value) {
-            $quantity = Quantity::where('target_id', $resource_id)
-                ->where('target_type', Resource::class)
-                ->where('branch_id', $branch->id)
-                ->first();
-            if ($quantity) {
-                $quantity->update(compact('value'));
-            }else {
-                Quantity::create([
-                    'branch_id' => $branch->id,
-                    'target_id' => $resource_id,
-                    'target_type' => Resource::class,
-                    'value' => $value,
-                ]);
-            }
+            Quantity::createOrUpdate($resource_id, Resource::class, $branch->id, $value);
         }
 
         // indicators
         foreach ($request->indicators as $indicator_id => $value) {
-            $quantity = Quantity::where('target_id', $indicator_id)
-                ->where('target_type', Indicator::class)
-                ->where('branch_id', $branch->id)
-                ->first();
-            if ($quantity) {
-                $quantity->update(compact('value'));
-            }else {
-                Quantity::create([
-                    'branch_id' => $branch->id,
-                    'target_id' => $indicator_id,
-                    'target_type' => Indicator::class,
-                    'value' => $value,
-                ]);
-            }
+            Quantity::createOrUpdate($indicator_id, Indicator::class, $branch->id, $value);
         }
 
         // redirection

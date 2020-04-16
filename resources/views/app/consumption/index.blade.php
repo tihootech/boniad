@@ -107,7 +107,7 @@
                                 {{$consumption->resource->unit ?? '-'}}
                             </td>
 							<td>
-                                <span class="calibri {{$consumption->target < $consumption->amount ? 'text-info' : 'text-danger'}}
+                                <span class="calibri {{$consumption->target > $consumption->amount ? 'text-info' : 'text-danger'}}
                                     @if($consumption->target == $consumption->amount) text-dark @endif">
                                     {{number_format($consumption->amount)}}
                                 </span>

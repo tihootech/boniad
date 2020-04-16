@@ -22,6 +22,8 @@ Route::put('acc/master', 'AccController@master_update')->name('master_acc_update
 // general : quantity management
 Route::get('quantity/{branch}', 'QuantityController@edit')->name('quantity.edit');
 Route::put('quantity/{branch}', 'QuantityController@update')->name('quantity.update');
+Route::get('quantity/pattern/{type}/{id}', 'QuantityController@edit_pattetn')->name('quantity.edit_pattetn');
+Route::put('quantity/pattern/{type}/{id}', 'QuantityController@update_pattetn')->name('quantity.update_pattetn');
 
 // green management
 Route::resource('resource', 'ResourceController')->except(['show','create', 'edit']);

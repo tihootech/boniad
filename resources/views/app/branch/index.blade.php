@@ -29,7 +29,7 @@
     						<tr>
     							<th scope="row"> {{$index+1}} </th>
     							<td> {{$branch->name}} </td>
-    							<td> {{$branch->user->name ?? 'Database Error'}} </td>
+    							<td class="calibri"> {{$branch->user->name ?? 'Database Error'}} </td>
     							<td>
     								<a href="{{route('quantity.edit', $branch->id)}}" class="btn btn-outline-info btn-sm">
                                         مدیریت هدف کمی

@@ -7,10 +7,10 @@
     <div class="tile">
 
         @master
-            <div class="row">
+            <div class="row justify-content-center">
                 @foreach ($branches as $branch)
                     @if ($branch->indicators_not_completed() || $branch->resources_not_completed())
-                        <div class="col-md-6">
+                        <div class="col-md-6 my-2">
                             @if ($branch->indicators_not_completed())
                                 <div class="alert alert-warning">
                                     <h4> هشدار! </h4>

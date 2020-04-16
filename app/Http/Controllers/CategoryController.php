@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Indicator;
 use App\Category;
+use App\Quantity;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -55,6 +57,11 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if ($category->indicators->count()) {
+            $indicator_ids = Indicator::where('category_id', $category->id)->pluck('id')->toArray();
+            Quantity::whereIn('target_id', $indicator_ids)->where('target_type', Indicator::class)->delete();
+            Indicator::whereIn('id', $indicator_ids)->delete();
+        }
         $category->delete();
         return redirect()->route('category.index')->withMessage(__('SUCCESS'));
     }

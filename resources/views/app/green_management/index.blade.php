@@ -10,28 +10,44 @@
 		</a>
 	</div>
     <div class="tile">
-        <h4> لیست همه منابع </h4>
-        <hr>
+        <h4 class="text-center text-primary mb-3"> لیست همه منابع </h4>
         @if ($resources->count())
             <div class="row">
                 @foreach ($resources as $resource)
-                    <div class="col-md-3 my-3">
-                        <form class="d-inline" action="{{route('resource.update', $resource->id)}}" method="post" id="update-{{$resource->id}}">
-                            @csrf
-                            @method('PUT')
-                            <input type="text" class="form-control my-1" name="name" value="{{$resource->name}}">
-                            <input type="text" class="form-control my-1" name="unit" value="{{$resource->unit}}">
-                        </form>
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <button type="submit" form="update-{{$resource->id}}" class="btn btn-success btn-block"> ویرایش </button>
-                            </div>
-                            <div class="col-6">
-                                <form class="d-inline" action="{{route('resource.destroy', $resource->id)}}" method="post">
+                    <div class="col-md-6 my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="d-inline" action="{{route('resource.update', $resource->id)}}" method="post" id="update-{{$resource->id}}">
                                     @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger btn-block delete"> حذف </button>
+                                    @method('PUT')
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="name"> نام منبع </label>
+                                            <input type="text" id="name" class="form-control my-1" name="name" value="{{$resource->name}}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="unit"> واحد مصرف </label>
+                                            <input type="text" id="unit" class="form-control my-1" name="unit" value="{{$resource->unit}}">
+                                        </div>
+                                    </div>
                                 </form>
+                                <div class="row mt-2">
+                                    <div class="col-md-3 my-1">
+                                        <button type="submit" form="update-{{$resource->id}}" class="btn btn-success btn-block"> ویرایش </button>
+                                    </div>
+                                    <div class="col-md-6 my-1">
+                                        <a href="{{route('quantity.edit_pattetn', ['resource', $resource->id])}}" class="btn btn-info btn-block">
+                                            مدیریت الگوی مصرف
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 my-1">
+                                        <form class="d-inline" action="{{route('resource.destroy', $resource->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-block delete"> حذف </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,7 +67,7 @@
                 <input id="resource-name" type="text" class="form-control" name="resource_name" value="{{old('resource_name')}}">
             </div>
             <div class="col-md-4">
-                <label for="resource-unit"> واحد مصرف انرژی </label>
+                <label for="resource-unit"> واحد مصرف </label>
                 <input id="resource-unit" type="text" class="form-control" name="resource_unit" value="{{old('resource_unit')}}">
             </div>
             <div class="col-md-2 align-self-end">

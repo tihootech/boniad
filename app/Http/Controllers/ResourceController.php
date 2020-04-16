@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Resource;
+use App\Quantity;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -30,11 +31,11 @@ class ResourceController extends Controller
             'resource_name' => 'required|unique:resources,name',
             'resource_unit' => 'required|string',
         ]);
-        Resource::create([
+        $resource = Resource::create([
             'name' => $request->resource_name,
             'unit' => $request->resource_unit,
         ]);
-        return back()->withMessage(__('SUCCESS'));
+        return redirect()->route('quantity.edit_pattetn', ['resource', $resource->id])->withMessage(__('SUCCESS'));
     }
 
     public function update(Request $request, Resource $resource)
@@ -52,6 +53,7 @@ class ResourceController extends Controller
 
     public function destroy(Resource $resource)
     {
+        Quantity::where('target_id', $resource->id)->where('target_type', Resource::class)->delete();
         $resource->delete();
         return back()->withMessage(__('SUCCESS'));
     }
