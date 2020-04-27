@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Resource;
 use App\Quantity;
+use App\Branch;
+use App\Consumption;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -14,9 +16,17 @@ class ResourceController extends Controller
 		$this->middleware('master');
 	}
 
-    public function landing()
+    public function landing(Request $request)
     {
-        return view('app.green_management.landing');
+        $branches = Branch::all();
+        $resources = Resource::all();
+
+        $consumptions = [];
+        if ($request->b && $request->r && $request->y) {
+            $consumptions = Consumption::where('year', $request->y)->where('branch_id', $request->b)->where('resource_id', $request->r)->get();
+        }
+
+        return view('app.green_management.landing', compact('request', 'branches', 'resources', 'consumptions'));
     }
 
     public function index()

@@ -4,9 +4,9 @@
 @endsection
 @section('content')
     <div class="tile text-md-left text-center">
-		<a href="{{route('eval.landing')}}" class="btn btn-primary">
+		<a href="{{route('eval.list')}}" class="btn btn-primary">
 			<i class="material-icons">arrow_forward</i>
-			بازگشت به بخش ارزیابی
+			بازگشت به لیست ارزیابی ها
 		</a>
 	</div>
     <div class="tile">

@@ -238,5 +238,5 @@ function persian_month_names($i=null)
         11 => 'بهمن',
         12 => 'اسفند',
     ];
-    return $i && isset($list[$i]) ? $list[$i] : $list;
+    return $i ? (isset($list[$i]) ? $list[$i] : '') : $list;
 }

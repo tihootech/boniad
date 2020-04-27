@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-3 form-group">
                 <label for="year"> سال </label>
-                <input type="text" id="year" class="form-control" name="y" value="{{request('y')}}">
+                <input type="number" id="year" class="form-control" name="y" value="{{request('y')}}">
             </div>
             <hr class="w-100">
             <div class="col-md-3 col-lg-2">

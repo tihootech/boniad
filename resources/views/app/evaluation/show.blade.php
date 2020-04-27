@@ -12,10 +12,6 @@
 			<i class="material-icons">arrow_forward</i>
 			بازگشت به لیست ارزیابی ها
 		</a>
-		<a href="{{route('eval.landing')}}" class="btn btn-primary btn-sm m-1">
-			<i class="material-icons">arrow_forward</i>
-			بازگشت به بخش ارزیابی
-		</a>
 	</div>
 
     <div class="tile">

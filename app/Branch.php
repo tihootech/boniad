@@ -13,6 +13,13 @@ class Branch extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getQuantityValue($type, $target_id)
+    {
+        $target_type = class_name($type);
+        $quantity = Quantity::where('branch_id', $this->id)->where('target_type', $target_type)->where('target_id', $target_id)->first();
+        return $quantity->value ?? 0;
+    }
+
     public function resource_patterns()
     {
         return $this->hasMany(Quantity::class)->where('target_type', Resource::class);

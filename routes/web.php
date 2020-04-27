@@ -35,7 +35,6 @@ Route::resource('branch', 'BranchController')->except('show');
 Route::resource('category', 'CategoryController')->except('show');
 Route::resource('indicator', 'IndicatorController')->except('show');
 
-Route::get('evaluation', 'EvaluationController@landing')->name('eval.landing');
 Route::get('evaluation/list', 'EvaluationController@list')->name('eval.list');
 Route::get('evaluation/new', 'EvaluationController@new')->name('eval.new');
 Route::get('evaluation/{evaluation}', 'EvaluationController@show')->name('eval.show');

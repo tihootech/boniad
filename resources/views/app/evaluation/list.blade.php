@@ -4,9 +4,13 @@
 @endsection
 @section('content')
     <div class="tile text-md-left text-center">
-		<a href="{{route('eval.landing')}}" class="btn btn-primary">
-			<i class="material-icons">arrow_forward</i>
-			بازگشت به بخش ارزیابی
+        <a href="{{route('eval.new')}}" class="btn btn-primary mx-1">
+			<i class="material-icons">add</i>
+			@master
+                ارزیابی شعب توسط مرکز
+            @else
+                ارزیابی جدید
+            @endmaster
 		</a>
 	</div>
     <div class="tile">
