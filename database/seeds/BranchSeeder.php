@@ -28,6 +28,7 @@ class BranchSeeder extends Seeder
             'dalahoo' => 'دالاهو',
             'salas' => 'ثلاث باباجانی',
             'ghasr' => 'قصرشیرین',
+            'setad' => 'ستاد',
         ];
 
         foreach ($list as $english => $persian) {
