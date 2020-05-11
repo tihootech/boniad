@@ -40,17 +40,17 @@
 					{{$evaluation->self_sum > $evaluation->master_sum ? 'text-info' : 'text-danger'}}
 					@if($evaluation->self_sum == $evaluation->master_sum) text-dark @endif
 				">
-					{{$evaluation->self_sum ?? '-'}}
+					{{$evaluation->self_sum ? round($evaluation->self_sum, 1) : '-'}}
 				</th>
 				<th class="calibri
 					{{$evaluation->self_sum < $evaluation->master_sum ? 'text-info' : 'text-danger'}}
 					@if($evaluation->self_sum == $evaluation->master_sum) text-dark @endif
 				">
-					{{$evaluation->master_sum ?? '-'}}
+					{{$evaluation->master_sum ? round($evaluation->master_sum, 1) : '-'}}
 				</th>
 				<th>
 					@if ($evaluation->ave)
-						<span class="calibri"> {{$evaluation->ave}} </span>
+						<span class="calibri"> {{round($evaluation->ave, 1)}} </span>
 					@else
 						<em class="text-warning"> نامشخص </em>
 					@endif

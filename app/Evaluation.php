@@ -16,6 +16,12 @@ class Evaluation extends Model
         }
     }
 
+    public function getPointFor($indicator_id, $registered_by_master)
+    {
+        $answer = Answer::where('indicator_id', $indicator_id)->where('registered_by_master', $registered_by_master)->first();
+        return $answer->point ?? null;
+    }
+
 	public function branch()
 	{
 		return $this->belongsTo(Branch::class);

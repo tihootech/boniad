@@ -36,7 +36,7 @@
 					</th>
 					<th>
 						@if (!is_null($self) && !is_null($master))
-							<span class="calibri"> {{($self+$master)/2}} </span>
+							<span class="calibri"> {{ round(($self+$master)/2 , 1) }} </span>
 						@else
 							<em class="text-warning"> نامشخص </em>
 						@endif
@@ -60,7 +60,7 @@
 				<th>-</th>
 				<th>
 					@if ($self && $master)
-						<span class="calibri"> {{($self+$master)/2}} </span>
+						<span class="calibri"> {{ round(($self+$master)/2 , 1) }} </span>
 					@else
 						<em class="text-warning"> نامشخص </em>
 					@endif

@@ -14,6 +14,9 @@ Auth::routes([
   'confirm' => false,
 ]);
 
+// report
+Route::get('report', 'ReportController@report')->name('report');
+
 // general : user account management
 Route::get('acc', 'AccController@edit')->name('acc');
 Route::put('acc', 'AccController@update')->name('acc_update');

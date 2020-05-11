@@ -20,6 +20,12 @@ class Branch extends Model
         return $quantity->value ?? 0;
     }
 
+    public function getConsumptionAmount($resource_id, $year, $quarter)
+    {
+        $consumption = Consumption::where('branch_id', $this->id)->where('resource_id', $resource_id)->where('year', $year)->where('quarter', $quarter)->first();
+        return $consumption->amount ?? 0;
+    }
+
     public function resource_patterns()
     {
         return $this->hasMany(Quantity::class)->where('target_type', Resource::class);

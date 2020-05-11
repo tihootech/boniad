@@ -64,7 +64,7 @@
         var barChartData = {
             labels: [
                 @foreach ($consumptions as $consumption)
-                    '{{translate_quarter($number)}}',
+                    'سه ماهه {{translate_quarter($consumption->quarter)}}',
                 @endforeach
             ],
             datasets: [{

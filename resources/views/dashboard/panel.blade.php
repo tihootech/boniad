@@ -45,3 +45,12 @@
 		<span class="app-menu__label"> ارزیابی </span>
 	</a>
 </li>
+
+@master
+<li>
+	<a class="app-menu__item @if(rn() == 'report') active @endif" href="{{route("report")}}">
+		<i class="ml-2 material-icons">assignment_turned_in</i>
+		<span class="app-menu__label"> گزارش گیری </span>
+	</a>
+</li>
+@endmaster
