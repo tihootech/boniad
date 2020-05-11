@@ -74,15 +74,21 @@
 									<th scope="row"> {{$resource->name}} </th>
 									@for ($q=1; $q <= 4; $q++)
 										<td class="calibri">
-											{{ number_format( $qsum += $active_branch->getQuantityValue('resource', $resource->id)) }}
+											{{ number_format($active_branch->getQuantityValue('resource', $resource->id)) }}
 										</td>
+                                        @php
+                                            $qsum += $active_branch->getQuantityValue('resource', $resource->id)
+                                        @endphp
 									@endfor
 									<td class="calibri"> {{ number_format($qsum) }} </td>
 									<td> {{$resource->unit}} </td>
 									@for ($q=1; $q <= 4; $q++)
 										<td class="calibri">
-											{{ number_format($csum += $active_branch->getConsumptionAmount($resource->id, $request->y, $q)) }}
+											{{ number_format($active_branch->getConsumptionAmount($resource->id, $request->y, $q)) }}
 										</td>
+                                        @php
+                                            $csum += $active_branch->getConsumptionAmount($resource->id, $request->y, $q)
+                                        @endphp
 									@endfor
 									<td class="calibri"> {{number_format($csum)}} </td>
 									<td>
