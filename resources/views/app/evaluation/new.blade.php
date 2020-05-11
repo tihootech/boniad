@@ -16,7 +16,7 @@
 
             @master
                 <div class="col-md-4 form-group">
-                    <label for="branch"> شعبه مورد نظر جهت ارزیابی را انتخاب کنید </label>
+                    <label for="branch"> بنیاد مورد نظر جهت ارزیابی را انتخاب کنید </label>
                     <select class="select2" id="branch" name="branch_id" required>
                         <option value="">انتخاب کنید</option>
                         @foreach ($branches as $branch)
@@ -28,6 +28,17 @@
             <div class="col-md-3">
                 <label for="year"> سال مورد نظر را وارد کنید </label>
                 <input id="year" type="number" class="form-control" name="year" required>
+            </div>
+            <div class="col-md-3 form-group">
+                <label for="quarter"> انتخاب ماه </label>
+                <select class="form-control" name="quarter" id="quarter" required>
+                    <option value=""> انتخاب کنید </option>
+                    @for ($number=1; $number <= 4; $number++)
+                        <option value="{{$number}}">
+                            سه ماهه {{translate_quarter($number)}}
+                        </option>
+                    @endfor
+                </select>
             </div>
             <div class="col-md-3 align-self-center">
                 <button type="submit" class="btn btn-primary btn-block">
@@ -47,12 +58,12 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                ارزیابی شعبه
+                                ارزیابی بنیاد
                                 <span class="text-primary"> {{$evaluation->branch->name ?? '-'}} </span>
                                 سال <span class="text-primary"> {{$evaluation->year}} </span>
                                 @master
                                     <br>
-                                    تکمیل شده توسط خود شعبه : <span class="text-primary"> {{$evaluation->self_sum ? 'بلی' : 'خیر'}} </span>
+                                    تکمیل شده توسط خود بنیاد : <span class="text-primary"> {{$evaluation->self_sum ? 'بلی' : 'خیر'}} </span>
                                 @endmaster
                                 <hr>
 

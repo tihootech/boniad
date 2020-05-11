@@ -37,12 +37,12 @@ class ConsumptionController extends Controller
             $consumptions = $consumptions->whereIn('resource_id', $request->r);
         }
 
-        if ($request->m && is_array($request->m) && count($request->m)) {
-            $consumptions = $consumptions->whereIn('month', $request->m);
+        if ($request->q && is_array($request->q) && count($request->q)) {
+            $consumptions = $consumptions->whereIn('quarter', $request->q);
         }
 
         if ($request->y) {
-            $consumptions = $consumptions->whereYear($request->y);
+            $consumptions = $consumptions->where('year', $request->y);
         }
 
 
@@ -69,6 +69,7 @@ class ConsumptionController extends Controller
             return back()->withError('Not a valid branch');
         }
         $data['branch_id'] = $branch->id;
+        $data['target'] = $branch->getQuantityValue('resource', $request->resource_id);
         Consumption::create($data);
         return redirect()->route('consumption.index')->withMessage(__('SUCCESS'));
     }
@@ -97,7 +98,7 @@ class ConsumptionController extends Controller
         $data = request()->validate([
             'resource_id' => 'required|exists:resources,id',
             'amount' => 'required|integer',
-            'month' => 'required|integer|between:1,12',
+            'quarter' => 'required|integer|between:1,4',
             'year' => 'required|integer|digits:4',
         ]);
 

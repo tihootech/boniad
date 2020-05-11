@@ -18,7 +18,7 @@
         <hr>
         <form class="row justify-content-center">
             <div class="col-md-3 form-group">
-                <label for="branch"> انتخاب شعبه </label>
+                <label for="branch"> انتخاب بنیاد </label>
                 <select class="select2" name="b" id="branch" required>
                     <option value="" disabled selected> انتخاب کنید </option>
                     @foreach ($branches as $branch)
@@ -29,7 +29,7 @@
                 </select>
             </div>
             <div class="col-md-3 form-group">
-                <label for="resource"> انتخاب منبع </label>
+                <label for="resource"> انتخاب منابع </label>
                 <select class="select2" name="r" id="resource" required>
                     <option value="" disabled selected> انتخاب کنید </option>
                     @foreach ($resources as $resource)
@@ -64,11 +64,11 @@
         var barChartData = {
             labels: [
                 @foreach ($consumptions as $consumption)
-                    '{{persian_month_names($consumption->month)}}',
+                    '{{translate_quarter($number)}}',
                 @endforeach
             ],
             datasets: [{
-                label: 'مقدار مصرف شعبه',
+                label: 'مقدار مصرف بنیاد',
                 backgroundColor: '#10375C',
                 borderColor: '#10375C',
                 borderWidth: 1,
@@ -78,7 +78,7 @@
                     @endforeach
                 ]
             }, {
-                label: 'هدف کمی شعبه',
+                label: 'هدف کمی بنیاد',
                 backgroundColor: '#43A047',
                 borderColor: '#43A047',
                 borderWidth: 1,

@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-    @if($branch->id) ویرایش شعبه @else تعریف شعبه جدید @endif
+    @if($branch->id) ویرایش بنیاد @else تعریف بنیاد جدید @endif
 @endsection
 @section('content')
 
 	<div class="tile text-md-left text-center">
 		<a href="{{route('branch.index')}}" class="btn btn-primary">
 			<i class="material-icons">arrow_forward</i>
-			بازگشت به لیست شعب
+			بازگشت به لیست بنیاد ها
 		</a>
 	</div>
     <div class="tile">
@@ -19,7 +19,7 @@
             @endif
 
             <div class="col-md-5">
-                <label for="name">نام شعبه</label>
+                <label for="name">نام بنیاد</label>
                 <input id="name" type="text" class="form-control" name="branch_name" value="{{$branch->name ?? old('branch_name')}}" required>
             </div>
 

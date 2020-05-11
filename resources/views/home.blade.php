@@ -14,7 +14,7 @@
                             @if ($branch->indicators_not_completed())
                                 <div class="alert alert-warning">
                                     <h4> هشدار! </h4>
-                                    هدف کمی مربوط به شاخص های شعبه
+                                    هدف کمی مربوط به شاخص های بنیاد
                                     <b> {{$branch->name}} </b>
                                     تکمیل نشده اند.
                                 </div>
@@ -22,7 +22,7 @@
                             @if ($branch->resources_not_completed())
                                 <div class="alert alert-warning">
                                     <h4> هشدار! </h4>
-                                    الگوی مصرف شعبه
+                                    الگوی مصرف بنیاد
                                     <b> {{$branch->name}} </b>
                                     تکمیل نشده است.
                                 </div>

@@ -54,7 +54,10 @@ class EvaluationController extends Controller
 	public function store(Request $request)
 	{
 		// validate request
-		$request->validate(['year'=>'required|integer|digits:4']);
+		$request->validate([
+			'year'=>'required|integer|digits:4',
+			'quarter'=>'required|integer|between:1,4',
+		]);
 
 		// prepare branch & branch id
 		if (master()) {
@@ -76,15 +79,16 @@ class EvaluationController extends Controller
 		}
 
 		// check if Evaluation is already created
-		$found = Evaluation::where('branch_id', $branch_id)->where('year', $request->year)->first();
+		$found = Evaluation::where('branch_id', $branch_id)->where('quarter', $request->quarter)->where('year', $request->year)->first();
 		if ($found) {
-			return back()->withError('در این سال برای این شعبه قبلا ارزیابی ایجاد شده است.');
+			return back()->withError('در این سال برای این بنیاد قبلا ارزیابی ایجاد شده است.');
 		}
 
 		// store Evaluation in db
 		$evaluation = Evaluation::create([
 			'branch_id' => $branch_id,
 			'year' => $request->year,
+			'quarter' => $request->quarter,
 		]);
 
 		// redirection

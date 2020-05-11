@@ -19,7 +19,7 @@ class CreateConsumptionsTable extends Migration
             $table->unsignedInteger('resource_id');
             $table->unsignedBigInteger('target');
             $table->unsignedBigInteger('amount');
-            $table->unsignedSmallInteger('month');
+            $table->unsignedSmallInteger('quarter');
             $table->unsignedSmallInteger('year');
             $table->string('document')->nullable();
             $table->timestamps();

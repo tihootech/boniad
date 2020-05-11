@@ -19,6 +19,7 @@
 					<tr>
 						<th scope="col"> ردیف </th>
 						<th scope="col"> نام دسته بندی </th>
+						<th scope="col"> نوع </th>
 						<th scope="col"> تعداد شاخص ها </th>
 						<th scope="col"> مجموع امتیازات </th>
 						<th scope="col" colspan="3"> عملیات </th>
@@ -29,6 +30,7 @@
 						<tr>
 							<th scope="row"> {{$index+1}} </th>
 							<td> {{$category->name}} </td>
+							<td> {{$category->type == 1 ? 'عمومی' : 'اختصاصی'}} </td>
 							<td class="calibri"> {{$category->indicators->count()}} </td>
                             <td class="calibri"> {{$category->max_points}} </td>
 							<td>

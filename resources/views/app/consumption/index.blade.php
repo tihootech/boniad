@@ -24,7 +24,7 @@
         <form class="row justify-content-center">
             @master
             <div class="col-md-3 form-group">
-                <label for="branch"> انتخاب شعبه </label>
+                <label for="branch"> انتخاب بنیاد </label>
                 <select class="select2" name="b[]" id="branch" multiple>
                     <option value="" disabled> انتخاب کنید </option>
                     @foreach ($branches as $branch)
@@ -36,7 +36,7 @@
             </div>
             @endmaster
             <div class="col-md-3 form-group">
-                <label for="resource"> انتخاب منبع </label>
+                <label for="resource"> انتخاب منابع </label>
                 <select class="select2" name="r[]" id="resource" multiple>
                     <option value="" disabled> انتخاب کنید </option>
                     @foreach ($resources as $resource)
@@ -47,14 +47,14 @@
                 </select>
             </div>
             <div class="col-md-3 form-group">
-                <label for="month"> انتخاب ماه </label>
-                <select class="select2" name="m[]" id="month" multiple>
+                <label for="quarter"> انتخاب ماه </label>
+                <select class="select2" name="q[]" id="quarter" multiple>
                     <option value="" disabled> انتخاب کنید </option>
-                    @foreach (persian_month_names() as $number => $month)
-                        <option value="{{$number}}" @if(is_array(request('m')) && in_array($number, request('m'))) selected @endif>
-                            {{$month}}
+                    @for ($number=1; $number <= 4; $number++)
+                        <option value="{{$number}}" @if(is_array(request('q')) && in_array($number, request('q'))) selected @endif>
+                            سه ماهه {{translate_quarter($number)}}
                         </option>
-                    @endforeach
+                    @endfor
                 </select>
             </div>
             <div class="col-md-3 form-group">
@@ -83,13 +83,13 @@
 					<tr>
 						<th scope="col"> ردیف </th>
                         @master
-                            <th scope="col"> شعبه </th>
+                            <th scope="col"> بنیاد </th>
                         @endmaster
 						<th scope="col"> منبع </th>
 						<th scope="col"> هدف کمی </th>
 						<th scope="col"> مقدار مصرف </th>
                         <th scope="col"> سال </th>
-                        <th scope="col"> ماه </th>
+                        <th scope="col"> سه ماهه </th>
                         <th scope="col"> فایل ضمیمه </th>
 						<th scope="col" colspan="2"> عملیات </th>
 					</tr>
@@ -114,7 +114,7 @@
                                 {{$consumption->resource->unit ?? '-'}}
                             </td>
 							<td> {{$consumption->year}} </td>
-							<td> {{persian_month_names($consumption->month)}} </td>
+							<td> {{translate_quarter($consumption->quarter)}} </td>
                             <td>
                                 @if ($consumption->document)
                                     <a href="{{asset($consumption->document)}}" download> دانلود </a>

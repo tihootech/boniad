@@ -10,7 +10,7 @@
 <li>
 	<a class="app-menu__item @if(rn() == 'branch.index') active @endif" href="{{route("branch.index")}}">
 		<i class="ml-2 material-icons">account_tree</i>
-		<span class="app-menu__label">مدیریت شعب</span>
+		<span class="app-menu__label">مدیریت بنیاد ها</span>
 	</a>
 </li>
 

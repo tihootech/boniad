@@ -18,6 +18,7 @@ class CreateQuantitiesTable extends Migration
             $table->unsignedInteger('branch_id');
             $table->morphs('target');
             $table->integer('value');
+            $table->integer('default')->default(0);
             $table->timestamps();
         });
     }

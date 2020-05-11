@@ -21,7 +21,7 @@
             @endif
 
             <div class="col-md-3 form-group">
-                <label for="res"> انتخاب منبع </label>
+                <label for="res"> انتخاب منابع </label>
                 <select class="form-control" id="res" name="resource_id" required>
                     <option value="">انتخاب کنید</option>
                     @foreach ($resources as $resource)
@@ -39,12 +39,14 @@
             </div>
 
             <div class="col-md-2 form-group">
-                <label for="month"> انتخاب ماه </label>
-                <select class="form-control" id="month" name="month" required>
-                    <option value="">انتخاب کنید</option>
-                    @foreach (persian_month_names() as $number => $name)
-                        <option value="{{$number}}" @if($number == $consumption->month) selected @endif>{{$name}}</option>
-                    @endforeach
+                <label for="quarter"> انتخاب ماه </label>
+                <select class="form-control" name="quarter" id="quarter" required>
+                    <option value=""> انتخاب کنید </option>
+                    @for ($number=1; $number <= 4; $number++)
+                        <option value="{{$number}}" @if($number == $consumption->quarter) selected @endif>
+                            سه ماهه {{translate_quarter($number)}}
+                        </option>
+                    @endfor
                 </select>
             </div>
 

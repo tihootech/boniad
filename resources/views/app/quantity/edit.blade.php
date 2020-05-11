@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-    مدیریت هدف کمی : شعبه {{$branch->name}}
+    مدیریت هدف کمی : بنیاد {{$branch->name}}
 @endsection
 @section('content')
 
 	<div class="tile text-md-left text-center">
 		<a href="{{route('branch.index')}}" class="btn btn-primary">
 			<i class="material-icons">arrow_forward</i>
-			بازگشت به لیست شعب
+			بازگشت به لیست بنیاد ها
 		</a>
 	</div>
 	<form action="{{route('quantity.update', $branch->id)}}" method="post">

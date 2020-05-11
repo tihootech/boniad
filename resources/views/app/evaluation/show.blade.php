@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title')
-    ارزیابی شعبه
+    ارزیابی بنیاد
     {{$evaluation->branch->name ?? '-'}}
     سال
     {{$evaluation->year}}
@@ -17,7 +17,7 @@
     <div class="tile">
 
         <h4>
-            ارزیابی شعبه
+            ارزیابی بنیاد
             {{$evaluation->branch->name ?? '-'}}
             سال
             {{$evaluation->year}}

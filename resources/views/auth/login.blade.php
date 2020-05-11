@@ -9,7 +9,7 @@
     <body>
         <div class="login-page">
             <div class="form">
-                <h3> سامانه ارزیابی شعب بنیاد شهید استان کرمانشاه </h3>
+                <h3> سامانه ارزیابی بنیاد ها بنیاد شهید استان کرمانشاه </h3>
                 @include('includes.errors')
                 <form class="login-form" method="post" action="{{route('login')}}">
                     @csrf

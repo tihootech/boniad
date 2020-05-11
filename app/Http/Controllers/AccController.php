@@ -66,7 +66,7 @@ class AccController extends Controller
 		}else {
 			$user->password = bcrypt($request->pwd);
 			$user->save();
-			return back()->withMessage('رمز عبور شعبه '.$branch->name.' با موفقیت تغییر یافت');
+			return back()->withMessage('رمز عبور بنیاد '.$branch->name.' با موفقیت تغییر یافت');
 		}
 	}
 }

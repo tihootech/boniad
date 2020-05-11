@@ -118,3 +118,10 @@ function parray($array)
 function all_indicators_total_max_points() {
     return App\Indicator::sum('points');
 }
+
+function translate_quarter($n)
+{
+    $n--;
+    $arr = ['اول', 'دوم', 'سوم', 'چهارم'];
+    return $arr[$n] ?? null;
+}

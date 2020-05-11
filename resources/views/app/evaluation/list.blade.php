@@ -7,7 +7,7 @@
         <a href="{{route('eval.new')}}" class="btn btn-primary mx-1">
 			<i class="material-icons">add</i>
 			@master
-                ارزیابی شعب توسط مرکز
+                ارزیابی بنیاد ها توسط مرکز
             @else
                 ارزیابی جدید
             @endmaster
@@ -22,9 +22,10 @@
 					<tr>
 						<th scope="col"> ردیف </th>
                         @master
-                            <th scope="col"> شعبه </th>
+                            <th scope="col"> بنیاد </th>
                         @endmaster
 						<th scope="col"> سال </th>
+						<th scope="col"> سه ماهه </th>
 						<th scope="col"> ارزیابی مرکز </th>
                         <th scope="col"> خود ارزیابی </th>
                         <th scope="col"> میانگین ارزیابی </th>
@@ -39,6 +40,7 @@
                                 <td> {{$evaluation->branch->name ??  '-'}} </td>
                             @endmaster
 							<td class="calibri"> {{$evaluation->year}} </td>
+							<td> {{translate_quarter($evaluation->quarter)}} </td>
 							<td>
                                 @if ($evaluation->master_sum)
                                     <span class="calibri"> {{round($evaluation->master_sum, 2)}} </span>

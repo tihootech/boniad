@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-    مدیریت شعب
+    مدیریت بنیاد ها
 @endsection
 @section('content')
 
 	<div class="tile text-md-left text-center">
 		<a href="{{route('branch.create')}}" class="btn btn-primary">
 			<i class="material-icons">add</i>
-			تعریفه شعبه جدید
+			تعریفه بنیاد جدید
 		</a>
 	</div>
     <div class="tile">
@@ -19,7 +19,7 @@
     				<thead>
     					<tr>
     						<th scope="col"> ردیف </th>
-    						<th scope="col"> نام شعبه </th>
+    						<th scope="col"> نام بنیاد </th>
     						<th scope="col"> نام کاربری جهت ورود به سیستم </th>
     						<th scope="col" colspan="4"> عملیات </th>
     					</tr>
@@ -73,7 +73,7 @@
                                 <input type="hidden" name="branch_id" id="branch-id-target" value="">
                                 <div class="form-group">
                                     <label for="new-password" class="col-form-label">
-                                        رمز عبور جدید برای شعبه
+                                        رمز عبور جدید برای بنیاد
                                         <span id="branch-name" class="text-primary"></span>
                                     </label>
                                     <input type="text" class="form-control" id="new-password" name="pwd" required>

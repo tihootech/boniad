@@ -32,14 +32,14 @@ class ConsumptionSeeder extends Seeder
                     $target = $quantity->value;
 
                     foreach ($years as $year) {
-                        for ($month = 1; $month <= 12 ; $month++) {
+                        for ($quarter = 1; $quarter <= 4 ; $quarter++) {
 
                             $list [] = [
                                 'branch_id' => $branch->id,
                                 'resource_id' => $resource->id,
                                 'target' => $target,
                                 'amount' => rand($target-50000, $target+50000),
-                                'month' => $month,
+                                'quarter' => $quarter,
                                 'year' => $year,
                                 'created_at' => now(),
                                 'updated_at' => now(),

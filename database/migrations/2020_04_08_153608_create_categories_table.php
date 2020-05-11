@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->unsignedSmallInteger('type')->default(1); // 1:عمومی and 2:اختصاصی
             $table->timestamps();
         });
     }
