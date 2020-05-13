@@ -32,10 +32,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required|string|unique:categories,name',
+            'type' => 'required',
         ]);
 
         Category::create([
             'name' => $request->category_name,
+            'type' => $request->type,
         ]);
 
         return redirect()->route('category.index')->withMessage(__('SUCCESS'));
@@ -50,8 +52,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => "required|string|unique:categories,name,$category->id",
+            'type' => 'required',
         ]);
-        $category->update(['name' => $request->category_name]);
+        $category->update([
+            'name' => $request->category_name,
+            'type' => $request->type,
+        ]);
         return redirect()->route('category.index')->withMessage(__('SUCCESS'));
     }
 

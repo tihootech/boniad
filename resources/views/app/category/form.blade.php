@@ -19,8 +19,16 @@
             @endif
 
             <div class="col-md-5">
-                <label for="name">نام دسته بندی</label>
+                <label for="name">نام دسته بندی (محور)</label>
                 <input id="name" type="text" class="form-control" name="category_name" value="{{$category->name ?? old('category_name')}}" required>
+            </div>
+            <div class="col-md-3">
+                <label for="type"> نوع محور </label>
+                <select class="form-control" name="type" required>
+                    <option value=""> -- انتخاب کنید -- </option>
+                    <option value="1" @if($category->type == 1) selected @endif> عمومی </option>
+                    <option value="2" @if($category->type == 2) selected @endif> اختصاصی </option>
+                </select>
             </div>
 
             <div class="col-md-2 align-self-end">
